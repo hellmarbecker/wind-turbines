@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Time::HiRes qw( time );
+use Time::HiRes qw( time usleep );
 
 # TurbineID, Timestamp, SignalName, SignalValue
 
@@ -37,5 +37,5 @@ while ( 1 ) {
 
     my $outstr = sprintf( "%d,%.3f,%s,%.2f\n", $turbineID, $timestamp, $signalName, $signalValue );
     print $outstr;
-    # print join( ",", $turbineID, $timestamp, $signalName, $signalValue ) . "\n";
+    usleep 990;
 }
