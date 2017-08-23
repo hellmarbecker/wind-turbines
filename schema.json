@@ -1,0 +1,23 @@
+{
+  "type" : "record", 
+  "name" : “data_in”,
+  "namespace" : “vestas”,
+  "fields" : [
+    { 
+      "name" : "turbineID",
+      "type" : "long"
+    },
+    { 
+      "name" : "timestamp",
+      "type" : "long"
+    },
+    { 
+      "name" : "signalName",
+      "type" : [ "null", "string" ]
+    },
+    {
+      "name" : "signalValue", 
+      "type" : "double"
+    } 
+  ]
+}
