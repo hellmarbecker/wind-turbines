@@ -1,7 +1,7 @@
 {
   "type" : "record", 
-  "name" : “data_in”,
-  "namespace" : “vestas”,
+  "name" : "data_in",
+  "namespace" : "vestas",
   "fields" : [
     { 
       "name" : "turbineID",
