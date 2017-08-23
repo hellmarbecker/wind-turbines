@@ -9,7 +9,7 @@
     },
     { 
       "name" : "timestamp",
-      "type" : "long"
+      "type" : "double"
     },
     { 
       "name" : "signalName",
