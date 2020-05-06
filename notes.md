@@ -2,7 +2,7 @@
 
     docker run --name nifi -p 8080:8080 -d apache/nifi:latest
 
-# Shell into container:
+## Shell into container:
 
     docker exec -it nifi bash
 
