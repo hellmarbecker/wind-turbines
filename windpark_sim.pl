@@ -6,7 +6,8 @@ use Time::HiRes qw( time usleep );
 
 # TurbineID, Timestamp, SignalName, SignalValue
 
-my $NumTurbines = 100;
+my $NumTurbines = 1;
+my $NumData = 100000;
 my %SignalRange = (
     wind_speed          => [ 0.0, 35.0 ],   # m/sec
     power               => [ 0.0, 9.0 ],    # MW
@@ -29,7 +30,7 @@ sub rrand {
     rand( $max - $min ) + $min;
 }
 
-while ( 1 ) {
+for (0 .. $NumData-1) {
     my $turbineID = int( rand( $NumTurbines ) );
     my $timestamp = time;
     my $signalName = $SignalName[ rand( $#SignalName ) ];
@@ -37,5 +38,5 @@ while ( 1 ) {
 
     my $outstr = sprintf( "%d,%.3f,%s,%.2f\n", $turbineID, $timestamp, $signalName, $signalValue );
     print $outstr;
-    usleep 990;
+    usleep 99;
 }
