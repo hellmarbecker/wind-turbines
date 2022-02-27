@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Time::HiRes qw( time usleep );
+use DateTime;
 
 # TurbineID, Timestamp, SignalName, SignalValue
 
@@ -30,13 +30,15 @@ sub rrand {
     rand( $max - $min ) + $min;
 }
 
+my $timestamp = DateTime->now;
+$timestamp->subtract( days => 2 );
+
 for (0 .. $NumData-1) {
     my $turbineID = int( rand( $NumTurbines ) );
-    my $timestamp = time;
+    $timestamp->add( nanoseconds => rand( 2000000000 ) );
     my $signalName = $SignalName[ rand( $#SignalName ) ];
     my $signalValue = rrand( $SignalRange{ $signalName } );
 
-    my $outstr = sprintf( "%d,%.3f,%s,%.2f\n", $turbineID, $timestamp, $signalName, $signalValue );
+    my $outstr = sprintf( "%d,%s,%s,%.2f\n", $turbineID, $timestamp, $signalName, $signalValue );
     print $outstr;
-    usleep 99;
 }
