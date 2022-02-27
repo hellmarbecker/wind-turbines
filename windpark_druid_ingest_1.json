@@ -1,0 +1,54 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "s3",
+        "uris": [
+          "s3://imply-cloud-sales-data/6d568a27-373c-4cc9-bb10-94647374e2ed/windpark_sim.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": false,
+        "columns": [
+          "TurbineID",
+          "Timestamp",
+          "SignalName",
+          "SignalValue"
+        ]
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "hashed"
+      },
+      "forceGuaranteedRollup": true
+    },
+    "dataSchema": {
+      "dataSource": "windpark_sim",
+      "timestampSpec": {
+        "column": "Timestamp",
+        "format": "iso"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          "TurbineID",
+          "SignalName",
+          {
+            "name": "SignalValue",
+            "type": "double"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "hour"
+      },
+      "transformSpec": {}
+    }
+  }
+}
